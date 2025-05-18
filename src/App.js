@@ -22,7 +22,7 @@ function App() {
       section: 1,
       question: "AI 影片展示",
       type: "video",
-      videoSrc: process.env.PUBLIC_URL + '/video/AIvideo.mp4',
+      videoSrc: './video/AIvideo.mp4',
       videoSize: randomValue === 1 ? "100%" : "50%", // 根據隨機值決定影片大小
       options: "請觀看以下影片，然後回答問題"
     },

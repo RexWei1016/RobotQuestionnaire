@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# AI 機器人問卷調查系統
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+這是一個基於 React 開發的 AI 機器人問卷調查系統，用於收集使用者對 AI 影片的觀看體驗和反饋。
 
-## Available Scripts
+## 功能特點
 
-In the project directory, you can run:
+- 互動式問卷設計
+- 影片播放功能
+- 多種問題類型支援（單選、多選、數字輸入等）
+- 分頁式問卷設計
+- 自動表單驗證
+- Google Sheets 整合（自動儲存問卷結果）
 
-### `npm start`
+## 技術棧
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React.js
+- Bootstrap
+- Google Apps Script (後端整合)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 安裝步驟
 
-### `npm test`
+1. 克隆專案
+```bash
+git clone https://github.com/RexWei1016/RobotQuestionnaire.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. 安裝依賴
+```bash
+cd RobotQuestionnaire
+npm install
+```
 
-### `npm run build`
+3. 啟動開發伺服器
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 使用說明
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. 開啟應用程式後，首先會播放 AI 相關影片
+2. 觀看完影片後，系統會引導您完成問卷
+3. 問卷分為多個部分，包含：
+   - 影片觀看體驗評估
+   - 影片改進建議
+   - 使用者體驗調查
+   - 個人背景資料
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 部署
 
-### `npm run eject`
+本專案已配置 GitHub Pages，可通過以下網址訪問：
+https://rexwei1016.github.io/RobotQuestionnaire/
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 貢獻
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+歡迎提交 Pull Request 或開 Issue 來改進這個專案。
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 授權
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT License
