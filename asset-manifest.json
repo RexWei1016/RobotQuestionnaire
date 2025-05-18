@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/RobotQuestionnaire/static/css/main.163ceade.css",
-    "main.js": "/RobotQuestionnaire/static/js/main.bae3ee34.js",
+    "main.js": "/RobotQuestionnaire/static/js/main.bb16fd51.js",
     "static/js/453.de6b9fb0.chunk.js": "/RobotQuestionnaire/static/js/453.de6b9fb0.chunk.js",
     "index.html": "/RobotQuestionnaire/index.html",
     "main.163ceade.css.map": "/RobotQuestionnaire/static/css/main.163ceade.css.map",
-    "main.bae3ee34.js.map": "/RobotQuestionnaire/static/js/main.bae3ee34.js.map",
+    "main.bb16fd51.js.map": "/RobotQuestionnaire/static/js/main.bb16fd51.js.map",
     "453.de6b9fb0.chunk.js.map": "/RobotQuestionnaire/static/js/453.de6b9fb0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.163ceade.css",
-    "static/js/main.bae3ee34.js"
+    "static/js/main.bb16fd51.js"
   ]
 }
