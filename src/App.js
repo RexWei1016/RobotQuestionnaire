@@ -22,7 +22,7 @@ function App() {
       section: 1,
       question: "AI 影片展示",
       type: "video",
-      videoSrc: './video/AIvideo.mp4',
+      videoSrc: 'https://rexwei1016.github.io/RobotQuestionnaire/video/AIvideo.mp4',
       videoSize: randomValue === 1 ? "100%" : "50%", // 根據隨機值決定影片大小
       options: "請觀看以下影片，然後回答問題"
     },
@@ -242,8 +242,10 @@ function App() {
     if (page < 0 || page >= totalSections) {
       return;
     }
-  
-    // ⛔ 不要直接跳過驗證
+    if (currentPage === 0) {
+      setCurrentPage(page);
+      return;
+    }
     // ✅ 應該根據目前頁面（currentPage）做 section 對應
     const sectionForCurrentPage = currentPage === 0 ? 1 : currentPage;
   
