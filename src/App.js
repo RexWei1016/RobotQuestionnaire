@@ -14,139 +14,167 @@ function App() {
   const [isVideoEnded, setIsVideoEnded] = useState(false);
 
   // 2. 定義常數
-  const totalSections = 5;
+  const totalSections = 6; // 更新為 6 個區塊：影片展示 + 5 個問題區塊
 
   // 3. 定義問題陣列
   const questions = useMemo(() => [
     {
-      section: 1,
+      section: 0, // 獨立出影片展示區塊
       question: "AI 影片展示",
       type: "video",
-      videoSrc: 'https://rexwei1016.github.io/RobotQuestionnaire/video/AIvideo.mp4',
-      videoSize: randomValue === 1 ? "100%" : "50%", // 根據隨機值決定影片大小
+      videoSrc: randomValue <= 2 ? 'https://rexwei1016.github.io/RobotQuestionnaire/video/AIvideo.mp4' : 'https://rexwei1016.github.io/RobotQuestionnaire/video/AIVideo2.mp4',
+      videoSize: randomValue % 2 === 1 ? "100%" : "50%", // 根據隨機值決定影片大小
       options: "請觀看以下影片，然後回答問題"
     },
     {
       section: 1,
       id: 1,
-      question: "您認為影片的大小是否合適？",
+      question: "我覺得這個 AI 角色太靠近我了，讓我感到有些壓迫感。",
       type: "radio",
-      options: ['太大', '稍大', '剛好', '稍小', '太小']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 1,
       id: 2,
-      question: "影片的清晰度如何？",
+      question: "這個 AI 角色讓我產生被監視或被盯著看的不舒服感。",
       type: "radio",
-      options: ['非常清晰', '清晰', '普通', '模糊', '非常模糊']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 1,
       id: 3,
-      question: "您覺得影片的播放速度如何？",
+      question: "與這個 AI 角色互動時，我會下意識地更小心自己說什麼。",
       type: "radio",
-      options: ['太快', '稍快', '適中', '稍慢', '太慢']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 1,
       id: 4,
-      question: "您對影片的整體觀看體驗滿意度如何？",
+      question: "這個 AI 角色讓我覺得有點難以放鬆或安心地溝通。",
       type: "radio",
-      options: ['非常滿意', '滿意', '普通', '不滿意', '非常不滿意']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 2,
       id: 5,
-      question: "您認為影片的哪些方面需要改進？（可多選）",
-      type: "checkbox",
-      options: ['影片大小', '播放速度', '清晰度', '音質', '內容長度'],
-      imageSrc:process.env.PUBLIC_URL + '/images/img03.png'
+      question: "我認為這個 AI 客服是值得信任的。",
+      type: "radio",
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
-      section: 3,
+      section: 2,
       id: 6,
-      question: "您是否注意到影片的大小變化？",
+      question: "我相信這個 AI 客服提供的資訊是正確的。",
       type: "radio",
-      options: ['有明顯感覺', '有一點感覺', '沒特別注意', '完全沒感覺'],
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
-      section: 3,
+      section: 2,
       id: 7,
-      question: "您願意花多少時間觀看這個影片？",
-      type: "number"
+      question: "如果這個 AI 提供建議，我會願意參考或遵從。",
+      type: "radio",
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
-      section: 3,
+      section: 2,
       id: 8,
-      question: "您認為影片的內容是否容易理解？",
+      question: "整體而言，我感覺這個 AI 客服是可靠的。",
       type: "radio",
-      options: ['非常容易', '容易', '普通', '困難', '非常困難']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 3,
       id: 9,
-      question: "您是否會推薦這個影片給其他人？",
+      question: "這個 AI 角色讓我感覺它離我非常近。",
       type: "radio",
-      options: ['一定會', '可能會', '不一定', '可能不會', '一定不會']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 3,
       id: 10,
-      question: "您認為影片的資訊量是否適中？",
+      question: "它出現在畫面上的方式讓我感覺它幾乎入侵我的個人空間。",
       type: "radio",
-      options: ['太多', '稍多', '適中', '稍少', '太少']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 3,
       id: 11,
-      question: "您對影片的互動性滿意度如何？",
+      question: "我感覺這個 AI 角色的距離太貼近我了。",
       type: "radio",
-      options: ['非常滿意', '滿意', '普通', '不滿意', '非常不滿意']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 3,
       id: 12,
-      question: "您認為影片的節奏是否合適？",
+      question: "我覺得這個 AI 角色與我之間缺乏安全的互動距離。",
       type: "radio",
-      options: ['太快', '稍快', '適中', '稍慢', '太慢']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 4,
       id: 13,
-      question: "您出生為西元?",
-      type: "number"
+      question: "這位 AI 給人一種主導性的印象。",
+      type: "radio",
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 4,
       id: 14,
+      question: "這位 AI 看起來掌握了主要發言權。",
+      type: "radio",
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
+    },
+    {
+      section: 4,
+      id: 15,
+      question: "這位 AI 表現出較強的控制力。",
+      type: "radio",
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
+    },
+    {
+      section: 4,
+      id: 16,
+      question: "這位 AI 整體形象看起來具有影響力。",
+      type: "radio",
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
+    },
+    {
+      section: 4,
+      id: 17,
+      question: "您是否願意提供您的學號供此 AI 查詢您的個人資訊？",
+      type: "radio",
+      options: ['是', '否']
+    },
+    {
+      section: 5,
+      id: 18,
+      question: "您出生為西元?",
+      type: "number"
+    },
+    {
+      section: 5,
+      id: 19,
       question: "您的性別為?",
       type: "radio",
       options: ['生理男', '生理女']
     },
     {
-      section: 4,
-      id: 15,
+      section: 5,
+      id: 20,
       question: "您的教育背景為?",
       type: "radio",
       options: ['社會科學院', '文/法學院', '商管學院', '理工學院', '海學院', '藝術/音樂學院', '醫(護)學院', '其他']
     },
     {
-      section: 4,
-      id: 16,
+      section: 5,
+      id: 21,
       question: "您的最高學歷為?",
       type: "radio",
       options: ['國中小', '高中', '大專院校', '碩博士']
     },
     {
-      section: 4,
-      id: 17,
-      question: "您平常每天使用電腦的時間約為?",
-      options: { min: 0, max: 24, step: 1 },
-      type: "range"
-    },
-    {
-      section: 4,
-      id: 18,
+      section: 5,
+      id: 22,
       question: "您的工作產業為?",
       type: "checkbox",
       options: ['軍警', '公務人員', '教育', '商', '工', '農', '醫療', '服務業', '家管', '學生', '退休', '資訊業', '其他']
@@ -155,12 +183,12 @@ function App() {
 
   // 4. 計算實際問題數量
   const totalQuestions = useMemo(() => {
-    return questions.filter(q => q.type !== "video").length;
+    return questions.filter(q => q.type !== "video" && q.section !== 0).length;
   }, [questions]); // 加入 questions 作為依賴
 
   // 5. 其他函數和邏輯
   const generateRandomValue = () => {
-    const random = Math.floor(Math.random() * 2) + 1;
+    const random = Math.floor(Math.random() * 4) + 1; // 1-4 的隨機數
     setRandomValue(random);
   };
 
@@ -198,7 +226,6 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 計算實際已回答的問題數量（不包括影片）
     
     // 若不是最後一頁，擋掉錯誤提交
     if (currentPage !== totalSections - 1) {
@@ -210,9 +237,18 @@ function App() {
       alert(`請確保所有問題都已經回答完畢！(已回答 ${answeredCount}/${totalQuestions} 題)`);
       return;
     }
+
+    // 加入 randomValue 到答案中
+    const submissionData = {
+      ...answers,
+      randomValue: randomValue,
+      videoType: randomValue <= 2 ? 'video1' : 'video2',
+      videoSize: randomValue % 2 === 1 ? '100%' : '50%'
+    };
+
     fetch('https://script.google.com/macros/s/AKfycbxGo5MlaB_0xH_eE58zMSiPH7ZO70Q9faaRAHDtL1kdPK1992PRD7DdsbWTlCVQuBM/exec', {
       method: 'POST',
-      body: JSON.stringify(answers)
+      body: JSON.stringify(submissionData)
     })
       .then(response => {
         if (response.ok) {
@@ -277,12 +313,35 @@ function App() {
 
   // 節的過濾函數
   const filteredQuestions = questions.filter(question => {
-    // 如果是第一頁（currentPage === 0），顯示影片
-    if (currentPage === 0) return false;
+    // 如果是第一頁（currentPage === 0），只顯示影片
+    if (currentPage === 0) return question.section === 0;
     // 其他頁面正常過濾
     return question.section === currentPage;
   });
   
+  // 定義量表選項的樣式
+  const scaleOptions = ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意'];
+  const scaleStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '10px',
+    padding: '0 20px'
+  };
+  const scaleStepStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: '5px'
+  };
+  const stepStyle = {
+    width: '20px',
+    height: '20px',
+    backgroundColor: '#007bff',
+    borderRadius: '50%',
+    margin: '0 5px'
+  };
+
   return (
     <div className="App">
       <header className="App-header">
