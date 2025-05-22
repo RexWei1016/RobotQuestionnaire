@@ -12,6 +12,12 @@ function App() {
   const [videoRef, setVideoRef] = useState(null);
   const [isVideoStarted, setIsVideoStarted] = useState(false);
   const [isVideoEnded, setIsVideoEnded] = useState(false);
+  const [screenInfo, setScreenInfo] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    isMobile: window.innerWidth <= 1024, // 修改為 1024px，包含 iPad
+    deviceType: window.innerWidth <= 768 ? 'mobile' : 'tablet' // 新增裝置類型判斷
+  });
 
   // 2. 定義常數
   const totalSections = 6; // 更新為 6 個區塊：影片展示 + 5 個問題區塊
@@ -224,6 +230,21 @@ function App() {
     });
   };
 
+  // 監聽螢幕尺寸變化
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenInfo({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        isMobile: window.innerWidth <= 1024, // 修改為 1024px
+        deviceType: window.innerWidth <= 768 ? 'mobile' : 'tablet' // 新增裝置類型判斷
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     
@@ -238,12 +259,19 @@ function App() {
       return;
     }
 
-    // 加入 randomValue 到答案中
+    // 加入 randomValue 和螢幕資訊到答案中
     const submissionData = {
       ...answers,
       randomValue: randomValue,
       videoType: randomValue <= 2 ? 'video1' : 'video2',
-      videoSize: randomValue % 2 === 1 ? '100%' : '50%'
+      videoSize: randomValue % 2 === 1 ? '100%' : '50%',
+      screenInfo: {
+        width: screenInfo.width,
+        height: screenInfo.height,
+        isMobile: screenInfo.isMobile,
+        deviceType: screenInfo.deviceType,
+        devicePixelRatio: window.devicePixelRatio
+      }
     };
 
     fetch('https://script.google.com/macros/s/AKfycbxGo5MlaB_0xH_eE58zMSiPH7ZO70Q9faaRAHDtL1kdPK1992PRD7DdsbWTlCVQuBM/exec', {
@@ -345,7 +373,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {submitted ? (
+        {!screenInfo.isMobile ? (
+          <div style={{ textAlign: 'center', padding: '20px' }}>
+            <h2>請使用手機或平板裝置進行問卷</h2>
+            <p>本問卷僅支援手機或平板裝置作答，請使用手機或平板開啟此頁面。</p>
+          </div>
+        ) : submitted ? (
           <div>
             <h2>感謝您的作答！</h2>
           </div>
