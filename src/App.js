@@ -358,11 +358,12 @@ function App() {
                   <video
                     ref={setVideoRef}
                     width="100%"
-                    controls
                     playsInline
                     onEnded={handleVideoEnded}
                     src={questions[0].videoSrc}
                     style={{ display: 'block', margin: '0 auto' }}
+                    controlsList="nodownload"
+                    controls={false}
                   />
                   <p>{questions[0].options}</p>
                   {!isVideoStarted ? (
