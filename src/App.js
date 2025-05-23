@@ -20,7 +20,7 @@ function App() {
   });
 
   // 2. 定義常數
-  const totalSections = 6; // 更新為 6 個區塊：影片展示 + 5 個問題區塊
+  const totalSections = 7; // 更新為 7 個區塊：影片展示 + 6 個問題區塊
 
   // 3. 定義問題陣列
   const questions = useMemo(() => [
@@ -35,152 +35,173 @@ function App() {
     {
       section: 1,
       id: 1,
-      question: "我覺得這個 AI 角色太靠近我了，讓我感到有些壓迫感。",
+      question: "請問你剛才與哪一個性別的AI客服互動",
       type: "radio",
-      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
+      options: ['男性', '女性']
     },
     {
       section: 1,
       id: 2,
-      question: "這個 AI 角色讓我產生被監視或被盯著看的不舒服感。",
+      question: "我感覺這個AI角色貼得我有點太近了",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 1,
       id: 3,
-      question: "與這個 AI 角色互動時，我會下意識地更小心自己說什麼。",
+      question: "這位 AI 客服給人的感覺是比較有主導性的 ",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
-      section: 1,
+      section: 2,
       id: 4,
-      question: "這個 AI 角色讓我覺得有點難以放鬆或安心地溝通。",
+      question: "這位AI客服讓我感到有些壓迫感",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 2,
       id: 5,
-      question: "我認為這個 AI 客服是值得信任的。",
+      question: "這位 AI 客服的行為方式讓我感到有些不舒服",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 2,
       id: 6,
-      question: "我相信這個 AI 客服提供的資訊是正確的。",
+      question: "這位 AI 客服的外貌或語氣讓我感到有些不安",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 2,
       id: 7,
-      question: "如果這個 AI 提供建議，我會願意參考或遵從。",
+      question: "這位 AI 客服表現出來的風格與我對客服角色的印象不太一致",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 2,
       id: 8,
-      question: "整體而言，我感覺這個 AI 客服是可靠的。",
+      question: "我會想避免與這樣的 AI 客服進一步互動",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 3,
       id: 9,
-      question: "這個 AI 角色讓我感覺它離我非常近。",
+      question: "我認為這個AI客服是值得信任的",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 3,
       id: 10,
-      question: "它出現在畫面上的方式讓我感覺它幾乎入侵我的個人空間。",
+      question: "我相信這個AI客服提供的資訊是正確的",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 3,
       id: 11,
-      question: "我感覺這個 AI 角色的距離太貼近我了。",
+      question: "如果這個AI提供建議給我，我會願意參考",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 3,
       id: 12,
-      question: "我覺得這個 AI 角色與我之間缺乏安全的互動距離。",
+      question: "整體而言，我感覺這個AI客服是可靠的",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 4,
       id: 13,
-      question: "這位 AI 給人一種主導性的印象。",
+      question: "這個AI客服讓我感覺它「離我非常近」",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 4,
       id: 14,
-      question: "這位 AI 看起來掌握了主要發言權。",
+      question: "它出現在畫面上的方式讓我感覺它幾乎「 入侵」我的整個畫面",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 4,
       id: 15,
-      question: "這位 AI 表現出較強的控制力。",
+      question: "這個 AI 客服在畫面中的呈現方式讓我覺得它距離太貼近我了",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 4,
       id: 16,
-      question: "這位 AI 整體形象看起來具有影響力。",
+      question: "我覺得這個 AI 客服與我之間缺乏令人安心的互動距離",
       type: "radio",
       options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
-      section: 4,
+      section: 5,
       id: 17,
-      question: "您是否願意提供您的學號供此 AI 查詢您的個人資訊？",
+      question: "這位 AI 給人一種主導性的印象",
       type: "radio",
-      options: ['是', '否']
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 5,
       id: 18,
-      question: "您出生為西元?",
-      type: "number"
+      question: "這位 AI 看起來掌握了主要發言權",
+      type: "radio",
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
     },
     {
       section: 5,
       id: 19,
+      question: "這位 AI 表現出較強的控制力",
+      type: "radio",
+      options: ['非常同意', '同意', '略同意', '普通', '略不同意', '不同意', '非常不同意']
+    },
+    {
+      section: 5, 
+      id: 20,
+      question: "這位 AI 整體形象看起來具有影響力",
+      type: "radio",
+      options: ['是', '否']
+    },
+    {
+      section: 6,
+      id: 21,
+      question: "您出生為西元?",
+      type: "number"
+    },
+    {
+      section: 6,
+      id: 22,
       question: "您的性別為?",
       type: "radio",
       options: ['生理男', '生理女']
     },
     {
-      section: 5,
-      id: 20,
+      section: 6,
+      id: 23,
       question: "您的教育背景為?",
       type: "radio",
       options: ['社會科學院', '文/法學院', '商管學院', '理工學院', '海學院', '藝術/音樂學院', '醫(護)學院', '其他']
     },
     {
-      section: 5,
-      id: 21,
+      section: 6,
+      id: 24,
       question: "您的最高學歷為?",
       type: "radio",
       options: ['國中小', '高中', '大專院校', '碩博士']
     },
     {
-      section: 5,
-      id: 22,
+      section: 6,
+      id: 25,
       question: "您的工作產業為?",
       type: "checkbox",
       options: ['軍警', '公務人員', '教育', '商', '工', '農', '醫療', '服務業', '家管', '學生', '退休', '資訊業', '其他']
