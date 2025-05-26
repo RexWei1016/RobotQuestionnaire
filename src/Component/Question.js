@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import './Question.css'; // 引入問題元件的 CSS 檔案
 
-function Question({ questionId, question, type, options, imageSrc, videoSrc, videoSize, handleAnswerChange, handleCheckboxChange }) {
+function Question({ questionId, question, type, options, imageSrc, videoSrc, videoSize, handleAnswerChange, handleCheckboxChange, showIf, answers }) {
   const defaultRangeValue = options && options.min ? options.min : 0;
   const [rangeValue, setRangeValue] = useState(defaultRangeValue);
+
+  // 如果 showIf 條件存在且不滿足，則不顯示問題
+  if (showIf && !showIf(answers)) {
+    return null;
+  }
+
   const renderInput = () => {
     switch (type) {
       case 'radio':
@@ -28,6 +34,14 @@ function Question({ questionId, question, type, options, imageSrc, videoSrc, vid
           <input
             type="number"
             onChange={(event) => handleAnswerChange(questionId, event.target.value)}
+          />
+        );
+      case 'email':
+        return (
+          <input
+            type="email"
+            onChange={(event) => handleAnswerChange(questionId, event.target.value)}
+            placeholder="請輸入您的電子郵件"
           />
         );
       case 'checkbox':

@@ -205,6 +205,20 @@ function App() {
       question: "您的工作產業為?",
       type: "checkbox",
       options: ['軍警', '公務人員', '教育', '商', '工', '農', '醫療', '服務業', '家管', '學生', '退休', '資訊業', '其他']
+    },
+    {
+      section: 6,
+      id: 26,
+      question: "您是否要參加抽獎活動？",
+      type: "radio",
+      options: ['是', '否']
+    },
+    {
+      section: 6,
+      id: 27,
+      question: "請留下您的電子郵件（參加抽獎用）",
+      type: "email",
+      showIf: (answers) => answers[26] === '是'
     }
   ], [randomValue]); // 加入 randomValue 作為依賴
 
@@ -228,10 +242,19 @@ function App() {
   }, [currentPage]);
 
   const handleAnswerChange = (questionId, answer) => {
-    setAnswers(prevAnswers => ({
-      ...prevAnswers,
-      [questionId]: answer
-    }));
+    setAnswers(prevAnswers => {
+      const newAnswers = {
+        ...prevAnswers,
+        [questionId]: answer
+      };
+
+      // 如果選擇不參加抽獎（問題 26），自動設置 email（問題 27）為 null@email.com
+      if (questionId === 26 && answer === '否') {
+        newAnswers[27] = 'null@email.com';
+      }
+
+      return newAnswers;
+    });
   };
 
   // 處理多選的變化
@@ -341,6 +364,13 @@ function App() {
     const isAllAnswered = currentSectionQuestions.every(question => {
       if (!question.id) return true;
       const value = answers[question.id];
+      
+      // 特殊處理抽獎相關問題
+      if (question.id === 27) { // email 問題
+        // 如果選擇不參加抽獎（id 26 的答案為 '否'），則不需要填寫 email
+        return answers[26] === '否' || (value !== undefined && value !== '');
+      }
+      
       return value !== undefined && value !== '' && !(Array.isArray(value) && value.length === 0);
     });
   
@@ -456,6 +486,8 @@ function App() {
                       imageSrc={question.imageSrc}
                       handleAnswerChange={handleAnswerChange}
                       handleCheckboxChange={question.type === 'checkbox' ? handleCheckboxChange : null}
+                      showIf={question.showIf}
+                      answers={answers}
                       {...question}
                     />
                   </div>
