@@ -31,8 +31,8 @@ function App() {
       videoSrc: randomValue <= 2 ? 'https://rexwei1016.github.io/RobotQuestionnaire/video/AIvideo.mp4' : 'https://rexwei1016.github.io/RobotQuestionnaire/video/AIVideo2.mp4',
       // 原始邏輯：根據 randomValue 決定影片大小
       // videoSize: randomValue % 2 === 1 ? "100%" : "50%",
-      // 暫時調整：固定顯示為 50%
-      videoSize: "50%",
+      // 暫時調整：固定顯示為 100%
+      videoSize: "100%",
       options: "請觀看以下影片，然後回答問題"
     },
     {
@@ -235,8 +235,8 @@ function App() {
     // 原始邏輯：1-4 的隨機數
     // const random = Math.floor(Math.random() * 4) + 1; // 1-4 的隨機數
     
-    // 暫時調整：只產生 2 或 4 的隨機數（對應 video1 和 video2 的 50% 情況）
-    const random = Math.random() < 0.5 ? 2 : 4;
+    // 暫時調整：只產生 1 或 3 的隨機數（對應 video1 和 video2 的 100% 情況）
+    const random = Math.random() < 0.5 ? 1 : 3;
     setRandomValue(random);
   };
 
